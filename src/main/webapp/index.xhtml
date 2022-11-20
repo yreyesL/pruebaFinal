@@ -1,0 +1,92 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Estudiantes</title>
+    </h:head>
+
+
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="2">
+
+                <p:panel id="panel22" header="Nuevo Estudiante" style="height:250px">
+                    <h:outputLabel value="Nombres: "/>
+                    <span class="ui-input-icon-left">
+                     <p:inputText value="#{estudianteBean.nombres}"
+                                  style="width: 200px"/>
+                    </span>
+                    <h:outputLabel value="Apellidos: "/>
+
+                    <span class="ui-input-icon-left">
+                    <p:inputText value="#{estudianteBean.apellidos}"
+                             style="width: 200px"/>
+                    </span>
+                    <h:outputLabel value="Cédula: "/>
+
+                    <span class="ui-input-icon-left">
+                    <p:inputText value="#{estudianteBean.cedula}"
+                             style="width: 200px"/>
+                    </span>
+                    <h:outputLabel value="Estado: "/>
+
+                    <span class="ui-input-icon-left">
+                    <p:selectBooleanCheckbox
+                        value="#{estudianteBean.activo}"/>
+                    </span>
+
+                    <div>  <p:commandButton value="Guardar"
+                                            actionListener="#{estudianteBean.guardar()}"
+                                            update="estudiantes"/></div>
+
+                    <br/>
+                    <br/>
+                </p:panel>
+
+                <p:panel id="panel222" header="Cursos Disponibles" style="height:200px">
+                    <br/>
+                    <br/>
+                    <p:dataTable id="cursos" var="c" value="#{estudianteBean.cursoList}" rowKey="#{c.curId}"
+                                 selectionMode="single">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{c.curId}"/>
+                        </p:column>
+                        <p:column headerText="Descripción">
+                            <h:outputText value="#{c.descripcion}"/>
+                        </p:column>
+                        <p:column headerText="Vacantes">
+                            <h:outputText value="#{c.vacantes}"/>
+                        </p:column>
+                        <p:column headerText="Matriculados">
+                            <h:outputText value="#{c.matriculados}"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>
+
+            </h:panelGrid>
+
+            <br/>
+            <h:panelGrid columns="2">
+
+                <p:panel id="est" header="Estudiantes" style="height:200px; margin-top: 30px">
+                    <p:dataTable id="estudiantes" var="e" value="#{estudianteBean.estudianteList}" rowKey="#{e.id}"
+                                 selectionMode="single">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{e.id}"/>
+                        </p:column>
+                        <p:column headerText="Nombres">
+                            <h:outputText value="#{e.nombres}"/>
+                        </p:column>
+                        <p:column headerText="Apellidos">
+                            <h:outputText value="#{e.apellidos}"/>
+                        </p:column>
+                        <p:column headerText="Cédula">
+                            <h:outputText value="#{e.cedula}"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</f:view>
